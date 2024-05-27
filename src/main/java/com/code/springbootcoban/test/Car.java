@@ -1,6 +1,6 @@
 package com.code.springbootcoban.test;
 
-public class Car implements ICar{
+public class Car {
     private String brand;
     private String model;
     private Engine engine;
@@ -41,7 +41,6 @@ public class Car implements ICar{
                 '}';
     }
 
-    @Override
     public void setEngineCar(Engine engine) {
         this.engine = engine;
     }
