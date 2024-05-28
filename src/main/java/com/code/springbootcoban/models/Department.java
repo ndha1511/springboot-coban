@@ -17,6 +17,10 @@ public class Department {
     private Long id;
     @Column(name = "department_name")
     private String name;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "email")
+    private String email;
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;

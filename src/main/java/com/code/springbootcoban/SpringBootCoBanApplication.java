@@ -11,9 +11,5 @@ public class SpringBootCoBanApplication {
         SpringApplication.run(SpringBootCoBanApplication.class, args);
     }
 
-    @Bean
-    public String helloBean() {
-        return "hello";
-    }
 
 }
