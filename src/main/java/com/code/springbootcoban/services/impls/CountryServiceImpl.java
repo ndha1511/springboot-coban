@@ -1,43 +1,29 @@
 package com.code.springbootcoban.services.impls;
 
 import com.code.springbootcoban.models.Country;
+
 import com.code.springbootcoban.repositories.CountryRepository;
 import com.code.springbootcoban.services.interfaces.CountryService;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
-@RequiredArgsConstructor
-public class CountryServiceImpl implements CountryService {
+public class CountryServiceImpl extends BaseServiceImpl<Country, Long> implements CountryService {
 
-    private final CountryRepository countryRepository;
+    private CountryRepository countryRepository;
 
-    @Override
-    public Country save(Country country) {
-        return countryRepository.save(country);
+    public CountryServiceImpl(JpaRepository<Country, Long> baseRepository) {
+        super(baseRepository);
     }
 
-    @Override
-    public List<Country> findAll() {
-        return countryRepository.findAll();
+    @Autowired
+    public void setCountryRepository(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
     }
 
-    @Override
-    public Country findOne(Long id) {
-        return countryRepository.findById(id).orElseThrow();
-    }
 
-    @Override
-    public void delete(Long id) {
-        countryRepository.deleteById(id);
-    }
 
-    @Override
-    public Country update(Long id, Country country) {
-        Country countryUpdated = countryRepository.findById(id).orElseThrow();
-        country.setId(countryUpdated.getId());
-        return countryRepository.save(country);
-    }
 }
